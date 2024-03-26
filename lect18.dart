@@ -1,5 +1,7 @@
 void main() {
   print('Hello, World!');
+
+  Person person = Person(25, 'John');
 }
 
 class Person {
@@ -32,13 +34,18 @@ class Person {
   // String? name;
   // int? age;
 
-  // // Shorter way to define a constructor
+  // Shorter way to define a constructor
   // Person(this.name, this.age);
 
   // void show() {
   //   print('Name: $name, Age: $age');
   // }
 
-  String name;
-  int age;
+  String? name;
+  int? age;
+
+  Person(int age, String name) {
+    this.age = age;
+    this.name = name;
+  }
 }
