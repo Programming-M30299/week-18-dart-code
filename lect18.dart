@@ -1,7 +1,8 @@
 void main() {
   print('Hello, World!');
 
-  Person person = Person(25, 'John');
+  // Instantiation of `Person` with named parameters
+  // Person person = Person(inputAge: 25, inputName: 'John');
 }
 
 class Person {
@@ -17,7 +18,7 @@ class Person {
   // String? name;
   // int? age;
 
-  // Constructor with required named parameters
+  // // Constructor with required named parameters
   // Person({required String inputName, required int inputAge}) {
   //   name = inputName;
   //   age = inputAge + 10;
@@ -26,9 +27,12 @@ class Person {
   // String name = 'unknown';
   // int? age;
 
-  // Constructor with a nullable and a required named parameter
+  // // Constructor with a nullable and a required named parameter
   // Person({String? inputName, required int inputAge}) {
   //   age = inputAge;
+  //   if (inputName != null) {
+  //     name = inputName;
+  //   }
   // }
 
   // String? name;

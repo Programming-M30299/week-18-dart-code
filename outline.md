@@ -41,6 +41,21 @@ Pay attention to the syntax and compare it with Python. Note that we define the 
 
 Also, we don't have a special method like `__init__` in Dart. Instead, we define a constructor with the same name as the class.
 
+The name of the parameters in the constructor don't need to be different to the instance variables. We could rename them to match as shown below. However you need to add `this.` before the instance variables to distinguish them from the parameters:
+```dart
+class Person {
+  String? name;
+  int? age;
+  
+  Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+```
+
+Read the first line inside the constructor as: "Set this object's name to be the name passed as the parameter". The same goes for the line defining a value for `age` instance variable.
+
 ## Constructing an instance of a class
 
 Constructing an object based on a class is similar to Python. We use the name of the class followed by parentheses. If the class has a constructor, we pass the required arguments to the constructor:
@@ -67,3 +82,44 @@ class Person {
 This way we don't need to declare our instance variables as nullable as we are guaranteed to pass values to them when creating an instance of the class. The `this` keyword is used to refer to the instance variables of the class.
 
 ## Constructors with required and nullable parameters
+
+We've already seen examples of functions with named parameters and how these parameters can be marked as required. In the following version of our `Person` class, both parameters are required:
+```dart
+class Person {
+  String? name;
+  int? age;
+
+  // Constructor with required named parameters
+  Person({required String inputName, required int inputAge}) {
+    name = inputName;
+    age = inputAge + 10;
+  }
+}
+```
+
+Remember that given this constructor, we must instantiate a `Person` object as shown below:
+```dart
+  Person john = Person(inputAge: 25, inputName: 'John');
+```
+
+We can also define default values for some of our instance variables and mark them as nullable in the constructor (in this case, `name` is nullable):
+```dart
+class Person {
+  String name = 'unknown';
+  int? age;
+
+  // Constructor with a nullable and a required named parameter
+  Person({String? inputName, required int inputAge}) {
+    age = inputAge;
+    if (inputName != null) {
+      name = inputName;
+    }
+  }
+}
+```
+
+This way we can instantiate a `Person` object with just the `age`:
+```dart
+  Person john = Person(inputAge: 25);
+  Person john = Person(inputAge: 25, inputName: 'John');
+```
