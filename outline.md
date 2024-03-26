@@ -2,7 +2,7 @@
 
 ## Instance variables and constructors
 
-Let's define a class `Person` with two instance variables `name` and `age`.
+Let's define a class `Person` and declare two instance variables `name` and `age` with their data types.
 ```dart
 class Person {
   String name;
@@ -64,9 +64,11 @@ void main() {
   Person alice = Person('Alice', 20);
   print(alice.name); // Alice
   print(alice.age); // 20
+  alice.age = 21
+  print(alice.age); // 21
 }
 ```
-Pay attention to how we accessed the instance variables with the dot (`.`) operator. All instance variables are by default accessible using the dot operator (we will learn how to limit this accessibility later).
+Pay attention to how we can access and modify the instance variables with the dot (`.`) operator. All instance variables are by default accessible using the dot operator and we don't need accessor or mutator methods to use them (we will learn how to limit this accessibility later).
 
 ## Shorter way to define instance variables and constructors
 
