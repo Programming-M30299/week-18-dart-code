@@ -29,3 +29,5 @@ doc/api/
 # Hide Visual Studio Code and Intellij project folders
 .vscode/
 .idea/
+
+output.md
