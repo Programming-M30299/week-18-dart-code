@@ -2,6 +2,8 @@
 
 ## Lecture notes
 
+### Classes and objects
+
 Here's a class that represents a car:
 ```dart
 class Car {
@@ -42,6 +44,28 @@ class Car {
   }
 }
 ```
+
+To construct an instance of this class we use the class name followed by parentheses. If the class has a constructor, we pass the required parameters to the constructor. In this case we pass a colour and a speed to create a new car:
+```dart
+void main() {
+  Car myCar = Car('red', 10.0);
+  print(myCar.colour); // red
+  print(myCar.speed); // 10.0
+}
+```
+
+To access the instance variables we use the dot (`.`) operator. We can also modify the instance variables using the dot operator:
+```dart
+  myCar.speed = 20.0;
+  print(myCar.speed); // 20.0
+```
+
+We can additionally get an object's data type using the `runtimeType` property (all objects in Dart have this property):
+```dart
+  print(myCar.runtimeType); // Car
+```
+
+## Class members and encapsulation
 
 ## Worksheet
 
