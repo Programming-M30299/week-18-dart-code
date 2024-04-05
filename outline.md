@@ -1,6 +1,8 @@
 # Object-Oriented Programming in Dart
 
-## Instance variables and constructors
+## Lecture slides
+
+### Instance variables and constructors
 
 Let's define a class `Person` and declare two instance variables `name` and `age` with their data types.
 ```dart
@@ -56,7 +58,7 @@ class Person {
 
 Read the first line inside the constructor as: "Set this object's name to be the name passed as the parameter". The same goes for the line defining a value for `age` instance variable.
 
-## Constructing an instance of a class
+### Constructing an instance of a class
 
 Constructing an object based on a class is similar to Python. We use the name of the class followed by parentheses. If the class has a constructor, we pass the required arguments to the constructor:
 ```dart
@@ -70,7 +72,7 @@ void main() {
 ```
 Pay attention to how we can access and modify the instance variables with the dot (`.`) operator. All instance variables are by default accessible using the dot operator and we don't need accessor or mutator methods to use them (we will learn how to limit this accessibility later).
 
-## Shorter way to define instance variables and constructors
+### Shorter way to define instance variables and constructors
 
 We can define the instance variables and the constructor in a shorter way:
 ```dart
@@ -83,7 +85,7 @@ class Person {
 ```
 This way we don't need to declare our instance variables as nullable as we are guaranteed to pass values to them when creating an instance of the class. The `this` keyword is used to refer to the instance variables of the class.
 
-## Constructors with required and nullable parameters
+### Constructors with required and nullable parameters
 
 We've already seen examples of functions with named parameters and how these parameters can be marked as required. In the following version of our `Person` class, both parameters are required:
 ```dart
@@ -125,3 +127,12 @@ This way we can instantiate a `Person` object with just the `age`:
   Person john = Person(inputAge: 25);
   Person john = Person(inputAge: 25, inputName: 'John');
 ```
+
+## Worksheet
+
+
+## Programming exercises
+
+Here is an example of a programming exercise. I have not spend enough time to think about this and make it a good exercise. Can you think of better exercises?
+
+1. Write a class representing a patient in a hospital. Each patient has an age, a name, and a list of symptoms. They also have a diagnosis which at the beginning is an empty string. The class should have a method `add_symptom` that receives a symptom and adds it to the list of symptoms. The class should also have a method `diagnose` that receives a diagnosis and sets the patient's diagnosis to the received diagnosis. There are some aspects of the class that must be kept private. Make sure that the class is well encapsulated and that the instance variables are not accessible from outside the class. Instead the user needs to use the methods provided by the class to interact with the object.
