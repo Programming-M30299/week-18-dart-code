@@ -1,6 +1,10 @@
 void main() {
-  print('Hello, World!');
-  Car myCar = Car('red', 100.0);
+  Car myCar = Car('red', 10.0);
+  print(myCar.colour); // red
+  print(myCar.speed); // 10.0
+
+  myCar.speed = 20.0;
+  print(myCar.speed); // 20.0
 }
 
 class Car {
