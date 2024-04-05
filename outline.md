@@ -1,6 +1,49 @@
 # Object-Oriented Programming in Dart
 
-## Lecture slides
+## Lecture notes
+
+Here's a class that represents a car:
+```dart
+class Car {
+  String colour = "";
+  double speed = 0.0;
+
+  Car(String inputColour, double inputSpeed) {
+    colour = inputColour;
+    speed = inputSpeed;
+  }
+}
+```
+
+The class has two instance variables `colour` and `speed`. The class also has a constructor that takes two parameters (`inputColour` and `inputSpeed`) and assigns them to the instance variables. The constructor has the same name as the class.
+
+The name of the parameters don't need to be different to the instance variables. We could rename them to match as shown below. However you need to add `this.` before the instance variables to distinguish them from the parameters:
+```dart
+class Car {
+  String colour = "";
+  double speed = 0.0;
+
+  Car(String colour, double speed) {
+    this.colour = colour;
+    this.speed = speed;
+  }
+}
+```
+
+The instance variables have a default value. We could also define them as nullable (hence the `?` after the data type) and set their value in the constructor:
+```dart
+class Car {
+  String? colour;
+  double? speed;
+
+  Car(String colour, double speed) {
+    this.colour = colour;
+    this.speed = speed;
+  }
+}
+```
+
+## Worksheet
 
 ### Instance variables and constructors
 
@@ -72,6 +115,11 @@ void main() {
 ```
 Pay attention to how we can access and modify the instance variables with the dot (`.`) operator. All instance variables are by default accessible using the dot operator and we don't need accessor or mutator methods to use them (we will learn how to limit this accessibility later).
 
+We can additionally get an object's data type using the `runtimeType` property (all objects in Dart have this property):
+```dart
+  print(alice.runtimeType); // Person
+```
+
 ### Shorter way to define instance variables and constructors
 
 We can define the instance variables and the constructor in a shorter way:
@@ -127,8 +175,6 @@ This way we can instantiate a `Person` object with just the `age`:
   Person john = Person(inputAge: 25);
   Person john = Person(inputAge: 25, inputName: 'John');
 ```
-
-## Worksheet
 
 
 ## Programming exercises
