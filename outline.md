@@ -65,7 +65,9 @@ We can additionally get an object's data type using the `runtimeType` property (
   print(myCar.runtimeType); // Car
 ```
 
-## Class members and encapsulation
+### Class members and encapsulation
+
+### Composition and inheritance
 
 ## Worksheet
 
@@ -199,6 +201,97 @@ This way we can instantiate a `Person` object with just the `age`:
   Person john = Person(inputAge: 25);
   Person john = Person(inputAge: 25, inputName: 'John');
 ```
+
+### Methods
+
+We can define methods in a class in a similar way to Python. Here's an example of a class `Student` class with two methods `graduate` and `greet`:
+```dart
+class Student {
+  String? name;
+  int level = 4;
+
+  Student(this.name, this.level, this._phoneNumber);
+
+  void graduate() {
+    level++;
+  }
+
+  String greet() => 'Hello, $name!';
+}
+```
+
+Note that `greet` is written using the arrow syntax. We can use these methods as shown below:
+```dart
+void main() {
+  Student alice = Student('Alice', 4);
+  print(alice.greet()); // Hello, Alice!
+  alice.graduate();
+  print(alice.level); // 5
+}
+```
+
+### Encapsulation
+
+In Dart, similar to Python, we can define instance variables as private by prefixing them with an underscore (`_`). This way they can only be accessed from within the library (the file) they are defined in. This is a way to encapsulate the data and prevent it from being modified from outside the class.
+
+We can still define public methods to access and modify these private instance variables. Encapsulation is a way to control how the data is accessed and modified and to prevent invalid data from being assigned to the instance variables.
+
+Suppose every student also has a phone number. We can define a private instance variable `_phoneNumber` and a public method `setPhoneNumber` to set the phone number:
+```dart
+class Student {
+  String? name;
+  int level = 4;
+  String? _phoneNumber;
+
+  Student(this.name, this.level, this._phoneNumber);
+
+  void graduate() {
+    level++;
+  }
+
+  String greet() => 'Hello, $name!';
+
+  void setPhoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+  }
+}
+```
+
+To access the phone number we can define a public method `getPhoneNumber`. But in this method, instead of returning the entire phone number, we want to only return the final 3 digits of the phone number. We can do this as shown below:
+```dart
+  String getPhoneNumber() {
+    int length = _phoneNumber!.length;
+    String lastThreeDigits = _phoneNumber!.substring(length - 3);
+    return 'Phone number ending in $lastThreeDigits';
+  }
+```
+
+In a different file import the `pract18.dart` file and create an instance of the `Student` class. Set the phone number using the `setPhoneNumber` method and print the phone number using the `getPhoneNumber` method. See below:
+
+```dart
+import 'pract18.dart';
+
+void main() {
+  Student alice = Student
+  alice.setPhoneNumber('1234567890');
+  // alice._phoneNumber = '1234567890'; // This will give an error
+  print(alice.getPhoneNumber()); // Phone number ending in 890
+}
+``` 
+
+Try uncommenting the line `alice._phoneNumber = '1234567890';` and see what happens.
+This error happens because `_phoneNumber` is a private instance variable and can only be set using the `setPhoneNumber` method. We could also define out own setter method to allow us to set the phone number directly:
+```dart
+  void set phoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+  }
+```
+
+And with the arrow syntax:
+```dart
+  void set phoneNumber(String phoneNumber) => _phoneNumber = phoneNumber;
+```
+
 
 
 ## Programming exercises
