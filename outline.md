@@ -266,7 +266,8 @@ To access the phone number we can define a public method `getPhoneNumber`. But i
   }
 ```
 
-In a different file import the `pract18.dart` file and create an instance of the `Student` class. Set the phone number using the `setPhoneNumber` method and print the phone number using the `getPhoneNumber` method. See below:
+Create a new file in your directory, called `main.dart`, and import the `pract18.dart` file and create an instance of the `Student` class.
+Set the phone number using the `setPhoneNumber` method and print the phone number using the `getPhoneNumber` method. See below:
 
 ```dart
 import 'pract18.dart';
@@ -292,7 +293,70 @@ And with the arrow syntax:
   void set phoneNumber(String phoneNumber) => _phoneNumber = phoneNumber;
 ```
 
+After you define this method you can set the phone number, inside the `main.dart` file, as shown below:
+```dart
+  alice.phoneNumber = '1234567890';
+```
 
+### Composition
+
+Composition in Dart is similar to Python. Here we have two classes `Module` and `Course`. A `Course` is composed of multiple `Module`s. We can define the `Course` class as shown below:
+```dart
+class Module {
+  String name;
+  int credits = 20;
+
+  Module(this.name, this.credits);
+}
+
+class Course {
+  String name;
+  List<Module> modules = [];
+
+  Course(this.name);
+}
+```
+
+Pay attention to the data type of `modules` which is a list of `Module` objects (hence `List<Module>`).
+
+We are assuming that all modules are by default worth 20 credits. 
+We've also left the module list of the course empty so we can add modules to it later using a method.
+
+Define a method `addModule` shown below in `Course` class that let's us add a `module` to the list of modules in a course:
+```dart
+  void addModule(Module module) {
+    modules.add(module);
+  }
+```
+
+Let's slightly change our course class to define a maximum credits (120 for all courses) and also check to ensure that adding a module to the course doesn't exceed the maximum credits:
+```dart
+class Course {
+  String name;
+  List<Module> modules = [];
+  int totalCredits = 0;
+  int _maxCredits = 120;
+
+  Course(this.name);
+
+  void addModule(Module module) {
+    if (totalCredits + module.credits <= maxCredits) {
+      modules.add(module);
+      totalCredits += module.credits;
+    } else {
+      print('Cannot add module. Exceeds maximum credits.');
+    }
+  }
+
+  int get maxCredits => _maxCredits;
+
+  int get totalCredits => totalCredits;
+}
+```
+
+Pay attention to the fact that we cannot set the value of `maxCredits` directly. We can only get the value of `maxCredits` using the `get` keyword. This is a way to encapsulate the data and prevent it from being modified from outside the class.
+
+On the other hand, we can set the value of `totalCredits` directly. Can you think of a way to prevent this from happening?
 
 ## Programming exercises
 
