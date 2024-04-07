@@ -1,18 +1,28 @@
-void main() {
-  Car myCar = Car('red', 10.0);
-  print(myCar.colour); // red
-  print(myCar.speed); // 10.0
+void main() {}
 
-  myCar.speed = 20.0;
-  print(myCar.speed); // 20.0
-}
+class BankAccount {
+  String owner;
+  double _balance = 0.0;
 
-class Car {
-  String? colour;
-  double? speed;
+  BankAccount(this.owner, this._balance);
 
-  Car(String colour, double speed) {
-    this.colour = colour;
-    this.speed = speed;
+  // The balance should be private because it's sensitive information.
+  // We can control its access through public methods.
+  double get balance => _balance;
+
+  void deposit(double amount) {
+    if (amount > 0) {
+      _balance += amount;
+    } else {
+      throw Exception('Deposit amount must be positive');
+    }
+  }
+
+  void withdraw(double amount) {
+    if (amount > 0 && amount <= _balance) {
+      _balance -= amount;
+    } else {
+      throw Exception('Invalid withdrawal amount');
+    }
   }
 }

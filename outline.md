@@ -2,12 +2,12 @@
 
 ## Lecture notes
 
-### Classes and objects
+### Basics of classes
 
 Here's a class that represents a car:
 ```dart
 class Car {
-  String colour = "";
+  String colour = '';
   double speed = 0.0;
 
   Car(String inputColour, double inputSpeed) {
@@ -65,7 +65,56 @@ We can additionally get an object's data type using the `runtimeType` property (
   print(myCar.runtimeType); // Car
 ```
 
-### Class members and encapsulation
+Methods in Dart, similar to Python, are functions defined inside a class. In Dart, we write them inside the curly braces of the class. Here are the accelerate and brake methods for the Car class:
+```dart
+class Car {
+  String colour = '';
+  double speed = 0.0;
+
+  Car(String colour, double speed);
+
+  void accelerate() {
+    speed += 10;
+  }
+
+  void brake() {
+    speed = 0;
+  }
+}
+```
+
+We could have also defined them using the arrow syntax:
+```dart
+  void accelerate() => speed += 10;
+  void brake() => speed = 0;
+```
+
+### Encapsulation
+
+To demonstrate this concept, take the following `BankAccount` class that has two instance variables `owner` and `balance`:
+```dart
+class BankAccount {
+  String owner;
+  double balance = 0.0;
+
+  BankAccount(this.owner);
+}
+```
+
+One major issue with this class is that the `balance` instance variable is public. This means that the balance can be modified directly from outside the class. To see this, create a new file in your directory, called `main.dart`, and import the `lect18.dart` file and create an instance of the `BankAccount` class:
+```dart
+import 'lect18.dart';
+
+void main() {
+  BankAccount account = BankAccount('Alice');
+  account.balance = 20.0;
+  print(account.balance); // 20.0
+  account.balance = -50.0;
+  print(account.balance); // -50.0
+}
+```
+
+Observe that we can freely modify the balance of the account directly. This is a problem because it allows invalid values to be assigned to the balance. We want to prevent this by encapsulating the balance and providing controlled access to it (e.g., preventing negative balances).
 
 Encapsulation is a key principle in object-oriented programming (OOP) that involves bundling data and methods within a class and restricting direct access to the data from outside the class. By using access modifiers like `private`, we can hide the internal details of a class and provide controlled access to the data through methods known as getters and setters.
 
@@ -82,7 +131,9 @@ This example showcases how encapsulation helps protect sensitive data, provides 
 ```dart
 class BankAccount {
   String owner;
-  double _balance;
+  double _balance = 0.0;
+
+  BankAccount(this.owner, this._balance);
 
   // The balance should be private because it's sensitive information.
   // We can control its access through public methods.
@@ -112,7 +163,7 @@ To try out the encapsulation, we must first create a new file, called `main.dart
 import 'lect18.dart';
 
 void main() {
-  BankAccount account = BankAccount('Alice', 100.0);
+  BankAccount account = BankAccount('Alice');
   // print(account.balance); // Error: The getter 'balance' isn't defined for the class 'BankAccount'.
 }
 ```
@@ -133,7 +184,7 @@ To see the value of the balance, we can add a getter method to get the balance o
 Pay attention to the syntax of the getter method. We use the `get` keyword followed by the name of the method (`balance`) and the return type of the method (`double`). This method allows us to access the balance without being able to modify it directly.
 
 ```dart
-  print(account.balance); // 125.0
+  print(account.balance); // 25.0
 ```
 
 But we don't want to allow the balance to be modified directly so we limit the changes to the balance through the `deposit` and `withdraw` methods.
@@ -562,5 +613,7 @@ Since `Circle` is a sublcass of `Shape`, we can also call the `move` method on a
 ## Programming exercises
 
 Here is an example of a programming exercise. I have not spend enough time to think about this and make it a good exercise. Can you think of better exercises?
+
+1. Take the `Car` class provided in the lecture notes. Make the `speed` instance variable private and add getter and setter methods to access and modify the speed of the car. The valid colours for a car are red, blue, and green. 
 
 1. Write a class representing a patient in a hospital. Each patient has an age, a name, and a list of symptoms. They also have a diagnosis which at the beginning is an empty string. The class should have a method `add_symptom` that receives a symptom and adds it to the list of symptoms. The class should also have a method `diagnose` that receives a diagnosis and sets the patient's diagnosis to the received diagnosis. There are some aspects of the class that must be kept private. Make sure that the class is well encapsulated and that the instance variables are not accessible from outside the class. Instead the user needs to use the methods provided by the class to interact with the object.
