@@ -203,31 +203,74 @@ If you were to allow the balance to be modified directly, you could define a set
 
 ### Composition and inheritance
 
+There is nothing special about composition in Dart.  Here is an example of a `Recipe` class that is composed of a set of `Ingredient` objects:
+
 ```dart
-class Bird {
-  bool canFly;
+class Ingredient {
   String name;
+  int calories;
 
-  Bird(this.name, {this.canFly = true});
-
-  String toString() {
-    return 'Name: $name, Can fly: $canFly';
-  }
+  Ingredient(this.name, this.calories);
 }
 
-class Parrot extends Bird {
-  Parrot(String name) : super(name);
+class Recipe {
+  String name;
+  Set<Ingredient> ingredients = {};
 
-  @override
-  String toString() {
-    return '${super.toString()}, Can speak: true';
-  }
-
-  void speak() {
-    print('Hello, my name is $name');
-  }
+  Recipe(this.name);
 }
 ```
+
+What is worth noting is the data type of `ingredients` which is a set of `Ingredient` objects (hence `Set<Ingredient>`).
+
+We've decided to define the initial value of the `ingredients` set as an empty set. This way we can add ingredients to it later using a method:
+
+```dart
+  void addIngredient(Ingredient ingredient) {
+    ingredients.add(ingredient);
+  }
+```
+
+To calculate the total calories of a recipe we can define a method `totalCalories` as shown below:
+
+```dart
+  int totalCalories() {
+    int total = 0;
+    for (Ingredient ingredient in ingredients) {
+      total += ingredient.calories;
+    }
+    return total;
+  }
+```
+
+Here, `Ingredient` is the data type of the loop variable `ingredient`. This is because the elements of the `ingredients` set are of type `Ingredient`.
+`ingredient.calories` is accessing the `calories` instance variable of the `Ingredient` object and adding it to the total.
+
+Let's add a string representation method to the `Ingredient` class:
+
+```dart
+  String toString() {
+    return '$name ($calories calories)';
+  }
+```
+
+Now we are going to use this to write a string representation method for the `Recipe` class:
+
+```dart
+  String toString() {
+    String result = '$name\n';
+    for (Ingredient ingredient in ingredients) {
+      result += '  $ingredient\n';
+    }
+    result += 'Total calories: ${totalCalories()}';
+    return result;
+  }
+```
+
+In the line `result += '  $ingredient\n';` we are using the `toString` method of the `Ingredient` class to get a string representation of the ingredient.
+
+Lastly, let's discuss inheritance in Dart. Here is an example of a `Bird` class and a `Parrot` subclass:
+
 
 ## Worksheet
 
