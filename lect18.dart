@@ -1,24 +1,22 @@
 void main() {}
 
-class Bird {
-  bool canFly;
-  String name;
+class Meal {
+  String burger;
+  String drink;
 
-  Bird(this.name, {this.canFly = true});
+  Meal(this.burger, this.drink);
 
   String toString() {
-    return 'Name: $name, Can fly: $canFly';
+    return '$burger, $drink and chips';
   }
 }
 
-class Parrot extends Bird {
-  Parrot(String name) : super(name);
+class KidsMeal extends Meal {
+  String toy;
+
+  KidsMeal(String burger, String drink, this.toy) : super(burger, drink);
 
   String toString() {
-    return '${super.toString()}, Can speak: true';
-  }
-
-  void speak() {
-    print('Hello, my name is $name');
+    return '${super.toString()} and $toy';
   }
 }

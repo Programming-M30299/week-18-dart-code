@@ -269,7 +269,33 @@ Now we are going to use this to write a string representation method for the `Re
 
 In the line `result += '  $ingredient\n';` we are using the `toString` method of the `Ingredient` class to get a string representation of the ingredient.
 
-Lastly, let's discuss inheritance in Dart. Here is an example of a `Bird` class and a `Parrot` subclass:
+Lastly, let's discuss inheritance in Dart. Let's start with a simple example:
+```dart
+class Meal {
+  String burger;
+  String drink;
+
+  Meal(this.burger, this.drink);
+
+  String toString() {
+    return '$burger, $drink and chips';
+  }
+}
+
+class KidsMeal extends Meal {
+  String toy;
+
+  KidsMeal(String burger, String drink, this.toy) : super(burger, drink);
+
+  String toString() {
+    return '${super.toString()} and $toy';
+  }
+}
+```
+
+
+
+Here is an example of a `Bird` class and a `Parrot` subclass:
 
 ```dart
 class Bird {
@@ -295,6 +321,8 @@ class Parrot extends Bird {
   }
 }
 ```
+
+
 
 
 ## Worksheet
