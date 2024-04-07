@@ -271,6 +271,31 @@ In the line `result += '  $ingredient\n';` we are using the `toString` method of
 
 Lastly, let's discuss inheritance in Dart. Here is an example of a `Bird` class and a `Parrot` subclass:
 
+```dart
+class Bird {
+  bool canFly;
+  String name;
+
+  Bird(this.name, {this.canFly = true});
+
+  String toString() {
+    return 'Name: $name, Can fly: $canFly';
+  }
+}
+
+class Parrot extends Bird {
+  Parrot(String name) : super(name);
+
+  String toString() {
+    return '${super.toString()}, Can speak: true';
+  }
+
+  void speak() {
+    print('Hello, my name is $name');
+  }
+}
+```
+
 
 ## Worksheet
 
