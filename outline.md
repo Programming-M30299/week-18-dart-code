@@ -67,6 +67,89 @@ We can additionally get an object's data type using the `runtimeType` property (
 
 ### Class members and encapsulation
 
+Encapsulation is a key principle in object-oriented programming (OOP) that involves bundling data and methods within a class and restricting direct access to the data from outside the class. By using access modifiers like `private`, we can hide the internal details of a class and provide controlled access to the data through methods known as getters and setters.
+
+Encapsulation is important for two main reasons:
+1. Data hiding: It prevents unauthorized modification of data and maintains the integrity of an object's state.
+2. Controlled access: It allows data to be accessed and modified through well-defined methods that can include validation and error checking.
+
+In the given example, the `BankAccount` class demonstrates encapsulation by using a private instance variable `_balance` to store the account balance. The balance is protected from direct access and modification from outside the class. Instead, the `deposit` and `withdraw` methods provide controlled access to modify the balance, including validation checks.
+
+To access the balance without modifying it directly, a getter method `balance` is defined. This allows reading the balance value while preventing direct modification.
+
+This example showcases how encapsulation helps protect sensitive data, provides controlled access, and maintains the consistency and integrity of an object's state.
+
+```dart
+class BankAccount {
+  String owner;
+  double _balance;
+
+  // The balance should be private because it's sensitive information.
+  // We can control its access through public methods.
+  double get balance => _balance;
+
+  void deposit(double amount) {
+    if (amount > 0) {
+      _balance += amount;
+    } else {
+      throw Exception('Deposit amount must be positive');
+    }
+  }
+
+  void withdraw(double amount) {
+    if (amount > 0 && amount <= _balance) {
+      _balance -= amount;
+    } else {
+      throw Exception('Invalid withdrawal amount');
+    }
+  }
+}
+```
+
+To try out the encapsulation, we must first create a new file, called `main.dart`, and import the `lect18.dart` file. Then we can create an instance of the `BankAccount` class and try to access and modify the balance:
+
+```dart
+import 'lect18.dart';
+
+void main() {
+  BankAccount account = BankAccount('Alice', 100.0);
+  // print(account.balance); // Error: The getter 'balance' isn't defined for the class 'BankAccount'.
+}
+```
+
+If you try to access the balance directly, you will get an error because the balance is a private instance variable. Instead, we can use the `deposit` and `withdraw` methods to modify the balance:
+
+```dart
+  account.deposit(50.0);
+  account.withdraw(25.0);
+```
+
+To see the value of the balance, we can add a getter method to get the balance of the account. This way we can access the balance without being able to modify it.
+
+```dart
+  double get balance => _balance;
+```
+
+Pay attention to the syntax of the getter method. We use the `get` keyword followed by the name of the method (`balance`) and the return type of the method (`double`). This method allows us to access the balance without being able to modify it directly.
+
+```dart
+  print(account.balance); // 125.0
+```
+
+But we don't want to allow the balance to be modified directly so we limit the changes to the balance through the `deposit` and `withdraw` methods.
+
+If you were to allow the balance to be modified directly, you could define a setter method to set the balance. This way you can control how the balance is modified and add validation checks if necessary.
+
+```dart
+  void set balance(double newBalance) {
+    if (newBalance >= 0) {
+      _balance = newBalance;
+    } else {
+      throw Exception('Balance cannot be negative');
+    }
+  }
+```
+
 ### Composition and inheritance
 
 ```dart
