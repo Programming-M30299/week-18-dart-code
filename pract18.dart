@@ -1,35 +1,36 @@
 void main() {
-  Student myStudent = Student('John Doe', 4, '0123456789');
-  print(myStudent.name); // John Doe
-  print(myStudent.level); // 4
-  print(myStudent.phoneNumber); // Phone number ending in 6789
-
-  myStudent.phoneNumber = '9876543210';
-  print(myStudent.phoneNumber); // Phone number ending in 3210
+  Shape s = new Shape(10.0, 20.0);
+  print(s);
+  Circle c = new Circle(100.0, 200.0, 50.0);
+  print(c);
 }
 
-class Student {
-  String? name;
-  int level = 4;
-  String? _phoneNumber;
+class Shape {
+  double x = 0.0;
+  double y = 0.0;
 
-  Student(String name, int level, String phoneNumber) {
-    this.name = name;
-    this.level = level;
-    this._phoneNumber = phoneNumber;
+  Shape(this.x, this.y);
+
+  void move(double dx, double dy) {
+    x += dx;
+    y += dy;
   }
 
-  // void set phoneNumber(String phoneNumber) {
-  //   this._phoneNumber = phoneNumber;
-  // }
+  String toString() {
+    return 'x: $x, y: $y';
+  }
+}
 
-  void set phoneNumber(String phoneNumber) {
-    this._phoneNumber = phoneNumber;
+class Circle extends Shape {
+  double radius = 0.0;
+
+  // Circle(double x, double y, this.radius) : super(x, y);
+
+  Circle(double x, double y, double radius) : super(x, y) {
+    this.radius = radius;
   }
 
-  String get phoneNumber {
-    return 'Phone number ending in ${_phoneNumber!.substring(7)}';
+  String toString() {
+    return '${super.toString()}, radius: $radius';
   }
-
-  String greet() => 'Hello, $name!';
 }

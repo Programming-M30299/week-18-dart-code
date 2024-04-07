@@ -69,6 +69,32 @@ We can additionally get an object's data type using the `runtimeType` property (
 
 ### Composition and inheritance
 
+```dart
+class Bird {
+  bool canFly;
+  String name;
+
+  Bird(this.name, {this.canFly = true});
+
+  String toString() {
+    return 'Name: $name, Can fly: $canFly';
+  }
+}
+
+class Parrot extends Bird {
+  Parrot(String name) : super(name);
+
+  @override
+  String toString() {
+    return '${super.toString()}, Can speak: true';
+  }
+
+  void speak() {
+    print('Hello, my name is $name');
+  }
+}
+```
+
 ## Worksheet
 
 ### Instance variables and constructors
@@ -230,6 +256,35 @@ void main() {
 }
 ```
 
+### String representation of an object
+
+Recall that in Python we can define a special method `__str__` to return a string representation of an object. In Dart, we can define a method `toString` to return a string representation of an object. Here's an example of a `Person` class with a `toString` method:
+```dart
+class Person {
+  String name = 'unknown';
+  int age = 0;
+
+  Person(this.name, this.age);
+
+  String toString() {
+    return 'Name: $name, Age: $age';
+  }
+}
+```
+
+You could also write this method using the arrow syntax:
+```dart
+  String toString() => 'Name: $name, Age: $age';
+```
+
+Once you have added the `toString` method to the `Person` class you can print an object of this class as shown below:
+```dart
+void main() {
+  Person alice = Person('Alice', 20);
+  print(alice); // Name: Alice, Age: 20
+}
+```
+
 ### Encapsulation
 
 In Dart, similar to Python, we can define instance variables as private by prefixing them with an underscore (`_`). This way they can only be accessed from within the library (the file) they are defined in. This is a way to encapsulate the data and prevent it from being modified from outside the class.
@@ -357,6 +412,69 @@ class Course {
 Pay attention to the fact that we cannot set the value of `maxCredits` directly. We can only get the value of `maxCredits` using the `get` keyword. This is a way to encapsulate the data and prevent it from being modified from outside the class.
 
 On the other hand, we can set the value of `totalCredits` directly. Can you think of a way to prevent this from happening?
+
+### Inheritance
+
+Inheritance in Dart works similar to Python but has some differences, mainly in the syntax. The subclass is defined using the `extends` keyword followed by the superclass. Here we have a superclass `Shape` and a subclass `Circle`:
+```dart
+class Shape {
+  double x = 0.0;
+  double y = 0.0;
+
+  Shape(this.x, this.y);
+
+  void move(double dx, double dy) {
+    x += dx;
+    y += dy;
+  }
+
+  String toString() {
+    return 'x: $x, y: $y';
+  }
+}
+
+class Circle extends Shape {
+  double radius = 0.0;
+
+  Circle(double x, double y, double radius) : super(x, y) {
+    this.radius = radius;
+  }
+
+  String toString() {
+    return '${super.toString()}, radius: $radius';
+  }
+}
+```
+
+Pay attention to the constructor of the subclass. We need to call the superclass constructor using the `super` keyword similar to Python. Except in Dart, we need to call the superclass before the opening curly brace of the subclass constructor.
+
+In this case we are taking three parameters `x`, `y`, and `radius` and passing the first two to the superclass constructor (using `super(x, y)`). We then assign the value of `radius` to the instance variable `radius` of the `Circle` class.
+
+We could also write the `Circle` constructor using the shorter syntax:
+```dart
+  Circle(double x, double y, this.radius) : super(x, y);
+```
+
+The last thing we need to draw your attention to is that the `toString` of the `Circle` class calls the `toString` of the superclass using the `super` keyword. This way we can get the string representation of the superclass and add the radius to it. We are technically overriding the `toString` method of the superclass.
+
+To see this, create an instance of the `Shape` class and the `Circle` class and print them in the `main` function:
+```dart
+void main() {
+  Shape s = Shape(1.0, 2.0);
+  print(s); // x: 1.0, y: 2.0
+
+  Circle c = Circle(3.0, 4.0, 5.0);
+  print(c); // x: 3.0, y: 4.0, radius: 5.0
+}
+```
+
+Notice that the first print is calling the `toString` method of the `Shape` class and the second print is calling the `toString` method of the `Circle` class.
+
+Since `Circle` is a sublcass of `Shape`, we can also call the `move` method on a `Circle` object:
+```dart
+  c.move(1.0, 1.0);
+  print(c); // x: 4.0, y: 5.0, radius: 5.0
+```
 
 ## Programming exercises
 
