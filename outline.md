@@ -293,8 +293,34 @@ class KidsMeal extends Meal {
 }
 ```
 
+Inheritance in Dart is defined using the `extends` keyword followed by the superclass. In this case, `KidsMeal` is a subclass of `Meal`.
 
+The subclass' constructor must call the superclass' constructor using the `super` keyword. In this case, we are passing the `burger` and `drink` parameters to the superclass constructor (`super(burger, drink)`). Pay attention to the placement of the `super` call.
 
+If we were to use curly braces in the constructor of the superclass, we would need to call the superclass constructor before the opening curly brace of the subclass constructor. For example:
+```dart
+  KidsMeal(String burger, String drink, this.toy) : super(burger, drink) {
+    // Additional initialization code
+  }
+```
+
+Another thing that is worth noting is the `toString` method of the `KidsMeal` class. We are using the `super` keyword to call the `toString` method of the superclass and add the toy to it. Let's see this in action:
+
+```dart
+void main() {
+  Meal meal = Meal('Big Mac', 'Coke');
+  print(meal); // Big Mac, Coke and chips
+
+  KidsMeal kidsMeal = KidsMeal('Happy Meal', 'Sprite', 'Toy car');
+  print(kidsMeal); // Happy Meal, Sprite and chips and Toy car
+}
+```
+
+In this example, we have a `Meal` class that represents a meal with a burger and a drink. We also have a `KidsMeal` class that extends the `Meal` class and adds a toy to the meal. The `KidsMeal` class overrides the `toString` method to include the toy in the string representation.
+
+When we create instances of the `Meal` and `KidsMeal` classes and print them, we see the string representation of the objects. The `KidsMeal` object includes the toy in the string representation, demonstrating the inheritance and method overriding in Dart.
+
+Let's see another example of inheritance in Dart where the subclass has additional methods.
 Here is an example of a `Bird` class and a `Parrot` subclass:
 
 ```dart
@@ -322,8 +348,23 @@ class Parrot extends Bird {
 }
 ```
 
+The constructor of the `Bird` class takes a `name` and an optional parameter `canFly` that defaults to `true`. The `toString` method of the `Bird` class returns a string representation of the bird's name and whether it can fly.
 
+The constructor of the `Parrot` class calls the superclass constructor passing the `name` parameter. Since we don't pass any value for `canFly`, it will default to `true` (simply put, all parrots can fly).
 
+Parrots have an additional method `speak` that prints a message. Let's see this in action:
+
+```dart
+void main() {
+  Bird bird = Bird('Sparrow', canFly: true);
+  print(bird); // Name: Sparrow, Can fly: true
+  // bird.speak(); // Error: The method 'speak' isn't defined for the class 'Bird'
+
+  Parrot parrot = Parrot('Polly');
+  print(parrot); // Name: Polly, Can fly: true, Can speak: true
+  parrot.speak(); // Hello, my name is Polly
+}
+``` 
 
 ## Worksheet
 
