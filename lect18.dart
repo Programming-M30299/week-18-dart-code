@@ -9,6 +9,8 @@ void main() {
   print(myCar.speed); // 20.0
   myCar.brake();
   print(myCar.speed); // 0.0
+
+  print(myCar); // Car(colour: blue, speed: 0.0)
 }
 
 class Car {
@@ -23,5 +25,9 @@ class Car {
 
   void brake() {
     speed = 0;
+  }
+
+  String toString() {
+    return 'Car(colour: $colour, speed: $speed)';
   }
 }
