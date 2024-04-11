@@ -31,3 +31,34 @@ class Car {
     return 'Car(colour: $colour, speed: $speed)';
   }
 }
+
+class BankAccount {
+  String owner;
+  double _balance = 0.0;
+
+  BankAccount(this.owner);
+
+  void deposit(double amount) => _balance += amount;
+
+  void withdraw(double amount) {
+    if (_balance - amount >= 0) {
+      _balance -= amount;
+    }
+  }
+
+  // Not needed anymore as we have balance getter and setter below
+  // double getBalance() => _balance;
+
+  // double get balance {
+  //   return _balance;
+  // }
+
+  // Getter using arrow syntax
+  double get balance => _balance;
+
+  void set balance(double amount) {
+    if (amount >= 0) {
+      _balance = amount;
+    }
+  }
+}
