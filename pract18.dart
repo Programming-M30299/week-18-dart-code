@@ -35,3 +35,21 @@ class Person {
     return 'Person(name: $name, age: $age)';
   }
 }
+
+class Student {
+  String? name;
+  int level = 4;
+  String? _phoneNumber;
+
+  Student(this.name, this._phoneNumber);
+
+  void graduate() {
+    level++;
+  }
+
+  String greet() => 'Hello, $name!';
+
+  void setPhoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+  }
+}

@@ -1,4 +1,5 @@
 import 'lect18.dart';
+import 'pract18.dart';
 
 void main() {
   BankAccount myAccount = BankAccount('Mani');
@@ -12,4 +13,6 @@ void main() {
   print(myAccount.balance); // 200.0
   myAccount.balance = -50.0; // should not set
   print(myAccount.balance); // 200.0
+
+  Student myStudent = Student('Alice', '1234567890');
 }
