@@ -14,5 +14,10 @@ void main() {
   myAccount.balance = -50.0; // should not set
   print(myAccount.balance); // 200.0
 
-  Student myStudent = Student('Alice', '1234567890');
+  Student devki = Student('Devki', '07123456789');
+  print(devki.name);
+  print(devki.level);
+  devki.phoneNumber = ''; // should not set
+  print(devki.phoneNumber); // gets the last 4 digits
+  devki.phoneNumber = '07987654321'; // sets the phone number
 }
