@@ -49,7 +49,45 @@ class Student {
 
   String greet() => 'Hello, $name!';
 
-  void setPhoneNumber(String phoneNumber) {
-    _phoneNumber = phoneNumber;
-  }
+  // String getPhoneNumber() {
+  //   String lastFourDigits = _phoneNumber!.substring(6);
+  //   return '***-***-$lastFourDigits';
+  // }
+
+  // void setPhoneNumber(String phoneNumber) {
+  //   if (phoneNumber.length == 10) {
+  //     _phoneNumber = phoneNumber;
+  //   }
+  // }
+
+  // String get phoneNumber {
+  //   String lastFourDigits = _phoneNumber!.substring(6);
+  //   return '***-***-$lastFourDigits';
+  // }
+
+  // void set phoneNumber(String phoneNumber) {
+  //   if (phoneNumber.length == 10) {
+  //     _phoneNumber = phoneNumber;
+  //   }
+  // }
+
+  String get phoneNumber => '***-***-${_phoneNumber!.substring(6)}';
 }
+
+// class Student {
+//   String? name;
+//   int level = 4;
+//   String? _phoneNumber;
+
+//   Student(this.name, this._phoneNumber);
+
+//   void graduate() {
+//     level++;
+//   }
+
+//   String greet() => 'Hello, $name!';
+
+//   void setPhoneNumber(String phoneNumber) {
+//     _phoneNumber = phoneNumber;
+//   }
+// }
