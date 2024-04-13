@@ -203,6 +203,8 @@ If you were to allow the balance to be modified directly, you could define a set
 
 ### Composition and inheritance
 
+#### Composition
+
 There is nothing special about composition in Dart.  Here is an example of a `Recipe` class that is composed of a set of `Ingredient` objects:
 
 ```dart
@@ -211,6 +213,8 @@ class Ingredient {
   int calories;
 
   Ingredient(this.name, this.calories);
+
+  String toString() => '$name ($calories calories)';
 }
 
 class Recipe {
@@ -218,6 +222,8 @@ class Recipe {
   Set<Ingredient> ingredients = {};
 
   Recipe(this.name);
+
+  String toString() => '$name: $ingredients';
 }
 ```
 
@@ -229,6 +235,18 @@ We've decided to define the initial value of the `ingredients` set as an empty s
   void addIngredient(Ingredient ingredient) {
     ingredients.add(ingredient);
   }
+```
+
+Let's create a few ingredients in the `main` function and add them to a recipe:
+```dart
+void main() {
+  Ingredient pasta = Ingredient('Pasta', 200);
+  Ingredient tomatoSauce = Ingredient('Tomato Sauce', 100);
+  Recipe pastaRecipe = Recipe('Pasta');
+  pastaRecipe.addIngredient(pasta);
+  pastaRecipe.addIngredient(tomatoSauce);
+  print(pastaRecipe); // Pasta: {Pasta (200 calories), Tomato Sauce (100 calories)}
+}
 ```
 
 To calculate the total calories of a recipe we can define a method `totalCalories` as shown below:
@@ -268,6 +286,8 @@ Now we are going to use this to write a string representation method for the `Re
 ```
 
 In the line `result += '  $ingredient\n';` we are using the `toString` method of the `Ingredient` class to get a string representation of the ingredient.
+
+#### Inheritance
 
 Lastly, let's discuss inheritance in Dart. Let's start with a simple example:
 ```dart
