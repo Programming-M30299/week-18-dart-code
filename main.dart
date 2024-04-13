@@ -2,6 +2,7 @@ import 'lect18.dart';
 import 'pract18.dart';
 
 void main() {
+  // Code for lecture
   BankAccount myAccount = BankAccount('Mani');
   print(myAccount.owner);
 
@@ -14,6 +15,7 @@ void main() {
   myAccount.balance = -50.0; // should not set
   print(myAccount.balance); // 200.0
 
+  // Code for practical
   Student devki = Student('Devki', '07123456789');
   print(devki.name);
   print(devki.level);
