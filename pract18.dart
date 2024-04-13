@@ -60,34 +60,16 @@ class Student {
   //   }
   // }
 
-  // String get phoneNumber {
-  //   String lastFourDigits = _phoneNumber!.substring(6);
-  //   return '***-***-$lastFourDigits';
-  // }
+  String get phoneNumber {
+    String lastFourDigits = _phoneNumber!.substring(6);
+    return '***-***-$lastFourDigits';
+  }
 
-  // void set phoneNumber(String phoneNumber) {
-  //   if (phoneNumber.length == 10) {
-  //     _phoneNumber = phoneNumber;
-  //   }
-  // }
+  // String get phoneNumber => '***-***-${_phoneNumber!.substring(6)}';
 
-  String get phoneNumber => '***-***-${_phoneNumber!.substring(6)}';
+  void set phoneNumber(String phoneNumber) {
+    if (phoneNumber.length == 10) {
+      _phoneNumber = phoneNumber;
+    }
+  }
 }
-
-// class Student {
-//   String? name;
-//   int level = 4;
-//   String? _phoneNumber;
-
-//   Student(this.name, this._phoneNumber);
-
-//   void graduate() {
-//     level++;
-//   }
-
-//   String greet() => 'Hello, $name!';
-
-//   void setPhoneNumber(String phoneNumber) {
-//     _phoneNumber = phoneNumber;
-//   }
-// }
