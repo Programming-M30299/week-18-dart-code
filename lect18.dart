@@ -109,3 +109,27 @@ class Recipe {
     return total;
   }
 }
+
+class Meal {
+  String burger;
+
+  Meal(this.burger);
+
+  String toString() {
+    return '$burger, chips and drink';
+  }
+}
+
+class KidsMeal extends Meal {
+  String toy = 'unknown';
+
+  // KidsMeal(String burger, this.toy) : super(burger);
+
+  KidsMeal(String burger, String toy) : super(burger) {
+    this.toy = toy;
+  }
+
+  String toString() {
+    return '${super.toString()} plus a $toy';
+  }
+}
