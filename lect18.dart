@@ -1,16 +1,24 @@
 void main() {
   Car myCar = Car('red', 10.0);
-  print(myCar.colour); // red
-  print(myCar.speed); // 10.0
+  print(myCar.colour);
+  print(myCar.speed);
   myCar.colour = 'blue';
-  print(myCar.colour); // blue
+  print(myCar.colour);
 
   myCar.accelerate(10);
-  print(myCar.speed); // 20.0
+  print(myCar.speed);
   myCar.brake();
-  print(myCar.speed); // 0.0
+  print(myCar.speed);
+  print(myCar);
 
-  print(myCar); // Car(colour: blue, speed: 0.0)
+  Ingredient pasta = Ingredient('Pasta', 200);
+  Ingredient sauce = Ingredient('Sauce', 100);
+  Recipe pastaRecipe = Recipe('Pasta');
+  pastaRecipe.addIngredient(pasta);
+  pastaRecipe.addIngredient(sauce);
+  print(pastaRecipe.ingredients);
+  print(pastaRecipe.totalCalories());
+  print(pastaRecipe);
 }
 
 class Car {
@@ -60,5 +68,44 @@ class BankAccount {
     if (amount >= 0) {
       _balance = amount;
     }
+  }
+}
+
+class Ingredient {
+  String name;
+  int calories;
+
+  Ingredient(this.name, this.calories);
+
+  String toString() => '$name ($calories calories)';
+}
+
+class Recipe {
+  String name;
+  Set<Ingredient> ingredients = {};
+
+  Recipe(this.name);
+
+  // String toString() => '$name: $ingredients';
+
+  String toString() {
+    String result = '$name\n';
+    for (Ingredient ingredient in ingredients) {
+      result += '  $ingredient\n';
+    }
+    result += 'Total calories: ${totalCalories()}';
+    return result;
+  }
+
+  void addIngredient(Ingredient ingredient) {
+    ingredients.add(ingredient);
+  }
+
+  int totalCalories() {
+    int total = 0;
+    for (Ingredient ingredient in ingredients) {
+      total += ingredient.calories;
+    }
+    return total;
   }
 }
