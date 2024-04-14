@@ -97,4 +97,13 @@ class Course {
   }
 
   int get maxCredits => _maxCredits;
+
+  String toString() {
+    String output = 'Course name: $name, Modules:\n';
+    for (Module module in modules) {
+      output += '  ${module.name} (${module.credits} credits)\n';
+    }
+    output += 'Total credits: $totalCredits';
+    return output;
+  }
 }
