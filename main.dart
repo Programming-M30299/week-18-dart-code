@@ -22,4 +22,13 @@ void main() {
   devki.phoneNumber = ''; // should not set
   print(devki.phoneNumber); // gets the last 4 digits
   devki.phoneNumber = '07987654321'; // sets the phone number
+
+  Module programming = Module('Programming', credits: 40);
+  Module databases = Module('Databases');
+
+  Course computing = Course('Computing');
+  computing.addModule(programming);
+  computing.addModule(databases);
+
+  print(computing.modules);
 }
