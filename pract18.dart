@@ -107,3 +107,29 @@ class Course {
     return output;
   }
 }
+
+class Shape {
+  double x = 0.0;
+  double y = 0.0;
+
+  Shape(this.x, this.y);
+
+  void move(double dx, double dy) {
+    x += dx;
+    y += dy;
+  }
+
+  String toString() => 'x: $x, y: $y';
+}
+
+class Circle extends Shape {
+  double radius = 0.0;
+
+  // Circle(double x, double y, double radius) : super(x, y) {
+  //   this.radius = radius;
+  // }
+
+  Circle(double x, double y, this.radius) : super(x, y);
+
+  String toString() => '${super.toString()}, radius: $radius';
+}
