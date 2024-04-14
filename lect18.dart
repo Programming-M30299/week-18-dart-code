@@ -19,6 +19,13 @@ void main() {
   print(pastaRecipe.ingredients);
   print(pastaRecipe.totalCalories());
   print(pastaRecipe);
+
+  KidsMeal happyMeal = KidsMeal('Cheeseburger', 'Slimer');
+  happyMeal.toy = 'Ectomobile';
+  print(happyMeal.toy); // Ectomobile
+  Meal meal = Meal('Big Mac');
+  print(meal); // Big Mac, chips and drink
+  print(happyMeal); // Cheeseburger, chips and drink plus a Ectomobile
 }
 
 class Car {
