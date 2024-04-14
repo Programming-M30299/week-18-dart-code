@@ -84,10 +84,17 @@ class Module {
 class Course {
   String name;
   List<Module> modules = [];
+  int totalCredits = 0;
+  int _maxCredits = 120;
 
   Course(this.name);
 
   void addModule(Module module) {
-    modules.add(module);
+    if (totalCredits + module.credits <= maxCredits) {
+      modules.add(module);
+      totalCredits += module.credits;
+    }
   }
+
+  int get maxCredits => _maxCredits;
 }
