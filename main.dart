@@ -31,4 +31,13 @@ void main() {
   computing.addModule(databases);
 
   print(computing.modules);
+
+  Shape square = Shape(1, 1);
+  Circle circle = Circle(2, 2, 3);
+  print("Square's x: ${square.x}, y: ${square.y}");
+  print("Circle's x: ${circle.x}, y: ${circle.y}, radius: ${circle.radius}");
+  square.move(2, 2);
+  print("Square's x: ${square.x}, y: ${square.y}");
+  circle.move(3, 3);
+  print("Circle's x: ${circle.x}, y: ${circle.y}, radius: ${circle.radius}");
 }
