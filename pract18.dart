@@ -73,3 +73,21 @@ class Student {
     }
   }
 }
+
+class Module {
+  String name;
+  int credits;
+
+  Module(this.name, {this.credits = 20});
+}
+
+class Course {
+  String name;
+  List<Module> modules = [];
+
+  Course(this.name);
+
+  void addModule(Module module) {
+    modules.add(module);
+  }
+}
