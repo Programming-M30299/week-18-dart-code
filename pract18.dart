@@ -4,7 +4,7 @@ void main() {
   print('Alice is ${alice.age} years old');
 
   print('Next year, Alice will be ${alice.ageNextYear()} years old');
-  print('Can Alice vote? ${alice.canVote()}');
+  print('Alice has a valid name: ${alice.hasValidName()}');
 
   print(alice);
   print(alice.runtimeType);
@@ -23,8 +23,8 @@ class Person {
     return age + 1;
   }
 
-  bool canVote() {
-    if (age >= 18) {
+  bool hasValidName() {
+    if (name.length > 2 && name.length < 100) {
       return true;
     } else {
       return false;
