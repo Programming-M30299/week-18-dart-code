@@ -49,23 +49,10 @@ class Student {
 
   String greet() => 'Hello, $name!';
 
-  // String getPhoneNumber() {
-  //   String lastFourDigits = _phoneNumber!.substring(6);
-  //   return '***-***-$lastFourDigits';
-  // }
-
-  // void setPhoneNumber(String phoneNumber) {
-  //   if (phoneNumber.length == 10) {
-  //     _phoneNumber = phoneNumber;
-  //   }
-  // }
-
   String get phoneNumber {
     String lastFourDigits = _phoneNumber!.substring(6);
     return '***-***-$lastFourDigits';
   }
-
-  // String get phoneNumber => '***-***-${_phoneNumber!.substring(6)}';
 
   void set phoneNumber(String phoneNumber) {
     if (phoneNumber.length == 10) {
