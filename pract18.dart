@@ -37,9 +37,9 @@ class Person {
 }
 
 class Student {
-  String? name;
+  String name;
   int level = 4;
-  String? _phoneNumber;
+  String _phoneNumber;
 
   Student(this.name, this._phoneNumber);
 
